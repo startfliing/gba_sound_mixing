@@ -35,12 +35,14 @@ u16 Terminal::setCNT(u8 bg, u16 cbb, u16 sbb){
 
 // reset line, clear the whole screen, and reset offset
 void Terminal::reset(){
-    curr_line_num = 0;
+    
     memset16(&se_mem[text_sbb], 0, sizeof(SCREENBLOCK)/2);
     TILE blank = text_font.getTile(0);
-    for(int i = 0; i < TERMINAL_TEXT_WIDTH*TERMINAL_TEXT_HEIGHT; i++){
+    int linesToErase = curr_line_num>TERMINAL_TEXT_HEIGHT ? TERMINAL_TEXT_HEIGHT : curr_line_num + 1;
+    for(int i = 0; i < TERMINAL_TEXT_WIDTH*linesToErase; i++){
         tile_mem[text_cbb][i+1] = blank;
     }
+    curr_line_num = 0;
 }
 
 //turn int (0,9) to char

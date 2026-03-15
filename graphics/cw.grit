@@ -1,0 +1,3 @@
+# tile format, NO tile reduction, 4-bit depth, flat layout, lz77 compression, lz77 graphic, none map, none pal
+
+-gt -mR! -gB4 -mLf -Zl -gz! -mz! -pz!
